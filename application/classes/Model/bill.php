@@ -3,16 +3,25 @@
 class Model_bill extends Model
 {
 
-	public function insertBill($name, $date, $amtPaid, $complete, $phoneNum, $user_id, $reference)
+	public function insertBill($name, $date, $dueDate, $amtPaid, $complete, $phoneNum, $user_id, $reference)
 	{
-		$query = DB::insert('bill', array('name','date','amtPaid','complete','phoneNum','user_id','reference'))
-		->values(array($name, $date, $amtPaid, $complete, $phoneNum, $user_id, $reference))->execute();
+		$result = DB::select()->from('bill')->where('user_id','=', 0)->order_by('invoiceNum', 'asc')->execute();
+		$index = sizeof($result);
+		$insertInvoiceNum = $result[$index - 1]['invoiceNum'];
+		$insertInvoiceNum = $insertInvoiceNum + 1;
+
+		$query = DB::insert('bill', array('name','invoiceNum','date','dueDate','amtPaid','complete','phoneNum','user_id','reference'))
+		->values(array($name, $insertInvoiceNum ,$date, $dueDate, $amtPaid, $complete, $phoneNum, $user_id, $reference))->execute();
 	}
 
-	public function load($invoice_id)
+	public function load($invoice_id, $user_id)
 	{
-		$result = DB::select()->from('bill')->execute()->as_array();
-		echo $result;
+		$result = DB::select()->from('bill')->where('invoiceNum','=', $invoice_id)->where('user_id','=', $user_id)->execute();
+		if(sizeof($result) - 1 > 0)
+		{
+			//echo "Error";
+		}
+		return $result[0];
 	}
 
 }

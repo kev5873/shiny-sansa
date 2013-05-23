@@ -7,7 +7,7 @@ class Controller_Create extends Controller_Template {
 	public function action_index()
 	{
 		$bill = new Model_bill();
-		$bill->insertBill('Cat','2013-12-30','500.00',true,'123-456-7890','0','none');
+		$bill->insertBill('Cat','2013-12-30','2012-05-13','500.00',true,'123-456-7890','0','none');
 	}
 
 }

@@ -28,13 +28,22 @@ class Controller_AllBills extends Controller_Template {
 			foreach ($result as $bill) {
 				echo '
 				<tr>
-					<td>'.$bill['id'].'</td>
+					<td>'.$bill['invoiceNum'].'</td>
 					<td>'.$bill['name'].'</td>
 					<td>'.$bill['date'].'</td>
 					<td>'.$bill['dueDate'].'</td>
 					<td>'.$bill['amtPaid'].'</td>
 					<td>'.$bill['status'].'</td>
-					<td>View|Payment|Edit|Delete|Log</td>
+					<td>
+					<form action="view" method="post">
+						<input type="hidden" name="user_id" value="0" />
+						<input type="hidden" name="invoiceNum" value="'.$bill['invoiceNum'].'" />
+						<input type="submit" value="View"/>
+					</form>|
+					Payment|
+					Edit|
+					Log
+					</td>
 				</tr>
 				';
 			}
@@ -42,6 +51,7 @@ class Controller_AllBills extends Controller_Template {
 			echo '
 			</table>
 			';
+			/*
 			foreach ($result as $bill) {
 				echo $bill['id'];
 				echo $bill['name'];
@@ -53,6 +63,7 @@ class Controller_AllBills extends Controller_Template {
 				echo $bill['phoneNum'];
 				echo $bill['reference'];
 			}
+			*/
 		}
 	}
 
