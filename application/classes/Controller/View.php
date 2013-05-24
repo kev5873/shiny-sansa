@@ -13,9 +13,9 @@ class Controller_View extends Controller_Template {
 			$bill = new Model_bill();
 			$results = $bill->load($invoice, $user_id);
 
-			$this->template->date = $results['date'];
-			$this->template->dueDate = $results['dueDate'];
-			$this->template->invoiceNum = $results['invoiceNum'];
+			$this->template->date = $results[0]['date'];
+			$this->template->dueDate = $results[0]['dueDate'];
+			$this->template->invoiceNum = $results[0]['invoiceNum'];
 
 			$this->template->companyName = "DigiTechnix";
 			$this->template->slogan = "Technology at your service";

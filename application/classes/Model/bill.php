@@ -20,8 +20,15 @@ class Model_bill extends Model
 		if(sizeof($result) - 1 > 0)
 		{
 			//echo "Error";
+			return null;
 		}
-		return $result[0];
+		$items  = DB::select()->from('item')->where('bill_id','=',$result[0]['id'])->execute();
+		$itemArray = array();
+		foreach($items as $item)
+		{
+			array_push($itemsArray, $item);
+		}
+		return array($result[0], $itemArray);
 	}
 
 }
