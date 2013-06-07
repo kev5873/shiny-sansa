@@ -39,12 +39,26 @@ class Controller_View extends Controller_Template {
 				$price += $item['price'];
 			}
 
-			$this->template->items = $pushItems;
-			$this->template->totalPrice = $item['price'];
-			$this->template->amountPaid = $results[0]['amtPaid'];
-			$this->template->amountDue = $item['price'] - $results[0]['amtPaid'];
+			if($pushItems == NULL)
+			{
+				$this->template->items = "
+					<tr>
+						<td></td>
+						<td colspan='2'>No Items</td>
+						<td>0</td>
+					</tr>";
+				$this->template->totalPrice = 0;
+				$this->template->amountPaid = $results[0]['amtPaid'];
+				$this->template->amountDue = 0 - $results[0]['amtPaid'];
+			}
+			else
+			{
+				$this->template->items = $pushItems;
+				$this->template->totalPrice = $item['price'];
+				$this->template->amountPaid = $results[0]['amtPaid'];
+				$this->template->amountDue = $item['price'] - $results[0]['amtPaid'];
+			}
 
-			var_dump($results);
 		}
 	}
 
