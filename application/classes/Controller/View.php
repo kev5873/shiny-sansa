@@ -26,6 +26,24 @@ class Controller_View extends Controller_Template {
 			$this->template->buyerPhone = "TEST";
 			$this->template->buyerEmail = "TEST";
 
+			$pushItems = NULL;
+			$price = 0;
+			foreach($results[1] as $item)
+			{
+				$pushItems = "
+					<tr>
+						<td>".$item['itemName']."</td>
+						<td colspan='2'>".$item['description']."</td>
+						<td>".$item['price']."</td>
+					</tr>";
+				$price += $item['price'];
+			}
+
+			$this->template->items = $pushItems;
+			$this->template->totalPrice = $item['price'];
+			$this->template->amountPaid = $results[0]['amtPaid'];
+			$this->template->amountDue = $item['price'] - $results[0]['amtPaid'];
+
 			var_dump($results);
 		}
 	}

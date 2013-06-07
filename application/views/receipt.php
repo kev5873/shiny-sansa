@@ -53,23 +53,19 @@
 				<td colspan="2">Description</td>
 				<td width="10%">Amount</td>
 			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td colspan="2">&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
+			<?=$items?>
 			<tr>
 				<td colspan="2" rowspan="3">&nbsp;</td>
 				<td width="10%">Total</td>
-				<td>&nbsp;</td>
+				<td><?=$totalPrice?></td>
 			</tr>
 			<tr>
 				<td width="10%">Paid</td>
-				<td>&nbsp;</td>
+				<td><?=$amountPaid?></td>
 			</tr>
 			<tr>
 				<td width="10%">Due</td>
-				<td>&nbsp;</td>
+				<td><?=$amountDue?></td>
 			</tr>
 		</table>
     </div>
