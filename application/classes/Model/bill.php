@@ -22,11 +22,11 @@ class Model_bill extends Model
 			//echo "Error";
 			return null;
 		}
-		$items  = DB::select()->from('item')->where('bill_id','=',$result[0]['id'])->execute();
+		$items = DB::select()->from('item')->where('bill_id','=',$invoice_id)->execute();
 		$itemArray = array();
 		foreach($items as $item)
 		{
-			array_push($itemsArray, $item);
+			array_push($itemArray, $item);
 		}
 		return array($result[0], $itemArray);
 	}
